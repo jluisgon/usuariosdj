@@ -63,14 +63,16 @@ DJANGO_APPS = (
 )
 
 # para aplicaciones locales
-LOCAL_APPS = (    
+LOCAL_APPS = ( 
+  'applications.users', 
 )
 
 # para aplicaciones de terceros
-THIRD_PARTY_APPS = ()
+THIRD_PARTY_APPS = (                                       
+)
 
 # final apps instaladas
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 
 
@@ -131,6 +133,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# indicarle a todo nuesro proyecto trabaje bajo otro modelo de usuarios
+AUTH_USER_MODEL = 'users.User'
 
 
 # Internationalization
