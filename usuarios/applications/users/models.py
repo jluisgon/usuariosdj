@@ -24,8 +24,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     nombres = models.CharField(max_length=30,  blank = True)
     apellidos = models.CharField(max_length=30,  blank = True)
     genero = models.CharField(max_length=1, choices = GENDER_CHOICES,  blank = True)
+    codregistro = models.CharField(max_length=6, blank = True)
     # campos para solicitados para crear usuarios
     is_staff = models.BooleanField(default = False)
+    is_active = models.BooleanField(default = False)
     
     
     # usuario que va a servir para autentificar en el login del Admin de Django    

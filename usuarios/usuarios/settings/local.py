@@ -30,3 +30,15 @@ STATICFILES_DIRS = [BASE_DIR.child('static')]
 # para guardar los archivos multimedias
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.child('media')
+
+# email settings
+# activar el envio de emails don Django
+EMAIL_USE_TLS = True
+# con que tipo de correo vamos a enviarlo
+EMAIL_HOST = 'smtp.gmail.com'
+# correo remitente
+EMAIL_HOST_USER = get_secret('EMAIL')
+# password del email
+EMAIL_HOST_PASSWORD = get_secret('PASS_EMAIL')
+# puerto de correos. en los servidores de ubuntu es el 587
+EMAIL_PORT = '587'

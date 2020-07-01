@@ -9,12 +9,13 @@ from django.contrib.auth.models import BaseUserManager
 class UserManager(BaseUserManager, models.Manager):
     
      # is_staff --> si este usuario puede o no acceder al adm de Django
-    def _create_user(self, username, email, password, is_staff, is_superuser, **extra_fields):
+    def _create_user(self, username, email, password, is_staff, is_superuser, is_active, **extra_fields):
         user = self.model(
             username=username,
             email=email,
             is_staff=is_staff,
-            is_superuser=is_superuser,            
+            is_superuser=is_superuser,   
+            is_active = is_active,         
             **extra_fields
         )
         # se necesita que el password se encripte
@@ -25,13 +26,17 @@ class UserManager(BaseUserManager, models.Manager):
               
     # se llama cuando se crea un usuario
     def create_user (self, username,  email, password=None, **extra_fields):
-        return self._create_user(username,  email, password, False, False, **extra_fields)
+        return self._create_user(username,  email, password, False, False, False, **extra_fields)
     
     # desde la terminal
     def create_superuser(self, username, email, password=None, **extra_fields):
         # funcion que esta dentro de BaseUserManager y que es privada
         # es privada para que solo esa utiliza desde esta funcion en especifico (create_superuser)
         # o desde la terminal
-        return self._create_user(username, email, password, True, True, **extra_fields)
-    
+        return self._create_user(username, email, password, True, True, True, **extra_fields) 
 
+    def Cod_valitation(self, id_user, cod_registro):
+        if self.filter(id= id_user, codregistro = cod_registro).exists():
+            return True
+        else:
+            return False
